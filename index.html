@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="description" content="Cron 解讀：五／六欄表達式與接下來觸發。純前端 Playgrounds SAM。" />
+    <title>Cron 解讀</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main>
+      <header class="hero">
+        <h1>Cron 解讀</h1>
+        <p class="tagline">5／6 欄 · 人類可讀 · 下次觸發（本地時區）</p>
+      </header>
+      <p class="note">簡化 Unix 風格（<code>*</code>、<code>,</code>、<code>-</code>、<code>/</code>）。日與週同時限制時採「兩者都符合」（AND）。非完整 Quartz／AWS cron。</p>
+      <p id="status" class="status" role="status">待命</p>
+      <label class="field"><span>Cron</span>
+        <input id="input" type="text" spellcheck="false" autocomplete="off" placeholder="例如：*/5 * * * *" value="*/5 * * * *" />
+      </label>
+      <div id="samples" class="controls">
+        <button type="button" class="secondary" data-cron="*/5 * * * *">每 5 分</button>
+        <button type="button" class="secondary" data-cron="0 9 * * 1-5">平日 09:00</button>
+        <button type="button" class="secondary" data-cron="0 0 1 * *">每月 1 日</button>
+        <button type="button" class="secondary" data-cron="0 30 8 * * 1">每週一 08:30</button>
+        <button type="button" id="btn-clear" class="secondary">清空</button>
+      </div>
+      <label class="field"><span>解讀</span><pre id="human" class="times"></pre></label>
+      <label class="field"><span>接下來幾次（本地時區）</span><pre id="next" class="times"></pre></label>
+      <p id="error" class="error" role="alert" hidden></p>
+      <p class="hint">Playgrounds <a href="https://samkuo.me/playgrounds/">遊樂場</a> 開源小品。</p>
+    </main>
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>
